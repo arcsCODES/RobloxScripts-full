@@ -966,6 +966,29 @@ Tabs.OTHER:AddButton({
 })
 
 Tabs.OTHER:AddButton({
+    Title = "RSPY",
+    Callback = function()
+        local success, err = pcall(function()
+            loadstring(game:HttpGet("https://raw.githubusercontent.com/arcsCODES/RobloxScripts-full/refs/heads/main/roblox%20scripts/universal/rspy.lua"))()
+        end)
+
+        if success then
+            Fluent:Notify({
+                Title = "Success",
+                Content = "RSPY executed successfully!",
+                Duration = 4
+            })
+        else
+            Fluent:Notify({
+                Title = "Error",
+                Content = "Execution failed: " .. tostring(err),
+                Duration = 6
+            })
+        end
+    end
+})
+
+Tabs.OTHER:AddButton({
     Title = "PLAYER TELEPORTASYON",
     Callback = function()
         local success, err = pcall(function()
