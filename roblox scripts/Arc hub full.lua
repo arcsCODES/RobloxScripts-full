@@ -31,7 +31,7 @@ local SATab = Window:MakeTab({
 
 
 SATab:AddSection({
-    Name = "MGA LIST UG SCRIPTS SA STANDS AWAKENING"
+    Name = "SCRIPTS"
 })
 
 SATab:AddButton({
