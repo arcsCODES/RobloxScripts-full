@@ -9,6 +9,12 @@ local Window = OrionLib:MakeWindow({
     IntroText = "Welcome to Example UI!",
 })
 
+if queueonteleport then
+    queueonteleport([[
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/yourusername/yourscript.lua"))()
+    ]])
+end
+
 
 
 
