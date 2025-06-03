@@ -4,7 +4,7 @@ local Fluent = loadstring(game:HttpGet("https://github.com/dawid-scripts/Fluent/
 -- Mag-himo ug window
 local Window = Fluent:CreateWindow({
     Title = "Arc's Hub | SA " .. Fluent.Version,
-    SubTitle = "credits: kashmir",
+    SubTitle = "discord: gg/5Bg9kATQmx",
     TabWidth = 160,
     Size = UDim2.fromOffset(580, 460),
     Acrylic = false, 
