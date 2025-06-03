@@ -1,0 +1,116 @@
+repeat task.wait() until game:IsLoaded() and game:GetService("Players").LocalPlayer
+
+local Players = game:GetService("Players")
+local LocalPlayer = Players.LocalPlayer
+local Character = LocalPlayer.Character or LocalPlayer.CharacterAdded:Wait()
+
+
+-- Ждем загрузки персонажа
+local HumanoidRootPart = Character:WaitForChild("HumanoidRootPart")
+local Humanoid = Character:WaitForChild("Humanoid")
+
+-- Variables
+local Time = true
+local Attacking = game:GetService("Workspace"):WaitForChild("Dead")
+local Obby = game:GetService("Workspace"):WaitForChild("ObbyW")
+local Phase = game:GetService("Workspace"):WaitForChild("BossPhase")
+local Health = game:GetService("Workspace"):WaitForChild("TrollHealth")
+
+-- Clear
+if game:GetService("Workspace"):FindFirstChild("Effects") then
+    game:GetService("Workspace").Effects:Destroy()
+end
+
+if game:GetService("Workspace").Map:FindFirstChild("ThunderParts") then
+    game:GetService("Workspace").Map.ThunderParts:Destroy()
+end
+
+-- Sword handling function
+local function setupSword()
+    -- Check all possible locations for the sword
+    local sword = Character:FindFirstChild("KnightsSword") 
+               or LocalPlayer.Backpack:FindFirstChild("KnightsSword")
+               or game:GetService("Workspace"):FindFirstChild("KnightsSword")
+    
+    if sword then
+        -- Ensure sword is in character's hand
+        if sword.Parent ~= Character then
+            sword.Parent = LocalPlayer.Backpack
+            Humanoid:UnequipTools()
+            sword.Parent = Character
+        end
+        
+        -- Setup sword properties
+        if sword:FindFirstChild("Handle") then
+            if not sword.Handle:FindFirstChild("SelectionBoxCreated") then
+                local Box = Instance.new("SelectionBox")
+                Box.Name = "SelectionBoxCreated"
+                Box.Parent = sword.Handle
+                Box.Adornee = sword.Handle
+            end
+            
+            sword.Handle.Massless = true
+            sword.GripPos = Vector3.new(0, 0, 0)
+            sword.Handle.Size = Vector3.new(20, 20, 500)
+        end
+    else
+        warn("KnightsSword not found in character, backpack or workspace")
+    end
+end
+
+-- Check for sword periodically
+local function swordCheck()
+    while true do
+        setupSword()
+        task.wait(5) -- Check every 5 seconds
+    end
+end
+
+task.spawn(swordCheck)
+
+-- Teleport
+task.spawn(function()
+    while true do
+        if Attacking.Value == false then
+            if Obby.Value == true then
+                HumanoidRootPart.CFrame = CFrame.new(20.4561386, 113.245972, 196.61351, 0.0634383112, 5.81675401e-08, -0.99798578, 8.29346689e-08, 1, 6.35567972e-08, 0.99798578, -8.67995524e-08, 0.0634383112)
+            else
+                if Phase.Value == "None" then
+                    HumanoidRootPart.CFrame = CFrame.new(-5.46999931, -4.45343876, 248.209991, 1, 1.68923409e-09, 7.63995055e-14, -1.68923409e-09, 1, 6.64721389e-09, -7.63882772e-14, -6.64721389e-09, 1)
+                else
+                    HumanoidRootPart.CFrame = CFrame.new(-19.8957844, -4.77343941, 142.49881, -0.999476075, -3.27794467e-08, -0.0323671587, -3.71140274e-08, 1, 1.33318295e-07, 0.0323671587, 1.34449706e-07, -0.999476075)
+                end
+            end
+        end
+        task.wait()
+    end
+end)
+
+-- Attack
+task.spawn(function()
+    while true do
+        if Attacking.Value == false and Obby.Value == false then
+            if Character:FindFirstChild("KnightsSword") then
+                Character.KnightsSword:Activate()
+            end
+        end
+        task.wait(0.1) -- Add small delay to prevent spamming
+    end
+end)
+
+-- Percent
+local function Percent(First, Second)
+    return First / Second
+end
+
+Health:GetPropertyChangedSignal("Value"):Connect(function()
+    if Percent(Health.Value, Health.MaxHealth.Value) <= 0.003 and Percent(Health.Value, Health.MaxHealth.Value) >= 0 then
+        if Time then
+            Time = false
+            Humanoid:UnequipTools()
+            task.wait(1)
+            setupSword() -- Re-equip sword
+            Time = true
+        end
+    end
+end)
