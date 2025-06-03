@@ -11,7 +11,7 @@ local Window = OrionLib:MakeWindow({
 
 if queueonteleport then
     queueonteleport([[
-        loadstring(game:HttpGet("https://raw.githubusercontent.com/yourusername/yourscript.lua"))()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/arcsCODES/RobloxScripts-full/refs/heads/main/roblox%20scripts/Arc%20hub%20full.lua"))()
     ]])
 end
 
