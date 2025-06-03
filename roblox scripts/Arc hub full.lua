@@ -2,7 +2,7 @@
 local OrionLib = loadstring(game:HttpGet("https://raw.githubusercontent.com/Giangplay/Script/main/Orion_Library_PE_V2.lua"))()
 
 local Window = OrionLib:MakeWindow({
-    Name = "Arc Hub Games Hub",
+    Name = "Arc's Hub v1.0",
     HidePremium = false,
     SaveConfig = false,
     IntroEnabled = true,
@@ -24,7 +24,7 @@ end
 
 
 local SATab = Window:MakeTab({
-    Name = "STANDS AWAKENING",
+    Name = "SA",
     Icon = "rbxassetid://4483345998",
     PremiumOnly = false
 })
