@@ -47,3 +47,29 @@ SATab:AddButton({
         loadstring(game:HttpGet("https://raw.githubusercontent.com/arcsCODES/RobloxScripts-full/refs/heads/main/roblox%20scripts/stands%20awakening/Boss%20autokill.txt"))()
     end    
 })
+
+
+
+
+
+
+local OTHERTab = Window:MakeTab({
+    Name = "Hub Scripts",
+    Icon = "rbxassetid://4483345998",
+    PremiumOnly = false
+})
+
+OTHERTab:AddButton({
+    Name = "DESTROY UI",
+    Callback = function()
+        OrionLib:Destroy()
+    end    
+})
+
+
+
+
+
+
+
+OrionLib:Init()
