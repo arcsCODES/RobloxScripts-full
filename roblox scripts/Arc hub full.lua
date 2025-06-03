@@ -87,6 +87,13 @@ OTHERTab:AddButton({
     end    
 })
 
+OTHERTab:AddButton({
+    Name = "INF YIELD",
+    Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/edgeiy/infiniteyield/master/source"))()
+    end    
+})
+
 
 
 
