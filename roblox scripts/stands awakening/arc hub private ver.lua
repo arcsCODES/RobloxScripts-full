@@ -2,7 +2,7 @@
 -- GET ICONS HERE: https://github.com/frappedevs/lucideblox/blob/master/src/modules/util/icons.json
 
 -- Load Native UI Library
-local Library = (getgenv and getgenv().NATIVELIBRARY) or loadstring(game:HttpGet("https://getnative.cc/script/interface", true))()
+local Library = (getgenv and getgenv().NATIVELIBRARY) or loadstring(game:HttpGet("https://raw.githubusercontent.com/arcsCODES/uiLib/refs/heads/main/naitvelibsource.lua"))()", true))()
 getgenv().NATIVELIBRARY = Library
 
 -- Services (declare once at the top)
