@@ -37,7 +37,7 @@ local SASection = SATab:AddSection({
 })
 
 SASection:AddButton({
-    Name = "Arc's Hub",
+    Name = "Arc's Hub | Main",
     Callback = function()
         loadstring(game:HttpGet("https://raw.githubusercontent.com/arcsCODES/RobloxScripts-full/refs/heads/main/roblox%20scripts/stands%20awakening/arc%20hub%20private%20ver.lua"))()
     end
